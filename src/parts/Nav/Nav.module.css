@@ -1,0 +1,31 @@
+.Nav {
+    background: green;
+}
+
+.list__item {
+    text-decoration: none;
+    color: white;
+}
+
+.list__item :hover {
+    color: gold;
+    text-decoration: none;
+}
+
+.list__item :active {
+    color: red;
+    text-decoration: none;
+}
+
+.list__item :link {
+    color: goldenrod;
+    text-decoration: none;
+}
+
+.findUsers {
+    color: white;
+    text-decoration: none;
+}
+
+
+

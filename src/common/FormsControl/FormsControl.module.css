@@ -1,0 +1,8 @@
+.error__input {
+    border: solid red 2px;
+}
+
+.error__message {
+    color: red;
+    font-weight: 700;
+}

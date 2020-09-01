@@ -1,0 +1,33 @@
+.FindUsers {
+    color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.selectedPage {
+    color: crimson;
+    font-weight: bold;
+    border: solid 1px black;
+    padding: 2px;
+}
+
+.userSide {
+    grid-row: 1 / 1;
+    margin-left: 10px;
+}
+
+.userPic {
+    width: 80px;
+    height: 80px;
+}
+
+.AllPages {
+    border: solid 1px black;
+    padding: 2px;
+}
+
+.pages {
+    margin-top: 2px;
+    margin-bottom: 8px;
+}

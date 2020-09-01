@@ -1,0 +1,25 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 3fr 8fr;
+    grid-template-rows: 1fr;
+}
+
+.dialogs__list {
+
+}
+
+.dialogs__listItem {
+
+}
+
+.messages {
+
+}
+
+.area {
+    margin: 20px 0 0 0;
+}
+
+.message {
+
+}

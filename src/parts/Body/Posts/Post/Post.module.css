@@ -1,0 +1,31 @@
+.Post {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 30px 1fr 25px;
+}
+
+.Post img{
+    grid-column: 1 / 1;
+    grid-row: 2 / 2;
+    width: 60px;
+    border-radius: 25px;
+}
+
+.userInfo {
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+}
+
+.likes {
+    grid-column: 2 / 2;
+    grid-row: 3 / 3;
+}
+
+.message {
+    color: black;
+    font-family: Arial sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    grid-row: 2 / 2;
+}
+

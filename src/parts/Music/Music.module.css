@@ -1,0 +1,20 @@
+.errorMessage {
+    color: crimson;
+    font-weight: 700;
+}
+
+.wholeForm {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.formElement {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+}
+
+.submitButton {
+    margin-left: 5px;
+}
