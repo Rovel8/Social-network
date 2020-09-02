@@ -4,7 +4,7 @@ import React from 'react';
 const News = () => {
     return (
         <div>
-            This is News component {element}
+            This is News component
         </div>
     );
 }

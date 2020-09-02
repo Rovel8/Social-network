@@ -1,4 +1,5 @@
-import classes from "../../parts/FindUsers/FindUsers.module.css";
+// @ts-ignore
+import classes from "../../parts/FindUsers/FindUsers.module.css"
 import React, {useState} from "react";
 
 type PropsType = {

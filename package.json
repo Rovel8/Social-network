@@ -29,7 +29,10 @@
     "redux-form": "^8.3.6",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
+    "typed-css-modules": "^0.6.4",
     "typescript": "^3.9.7",
+    "typescript-plugin-css-modules": "^2.4.0",
+    "typings-for-css-modules-loader": "^1.7.0",
     "uuid": "^8.3.0",
     "yup": "^0.29.3"
   },

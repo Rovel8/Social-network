@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from "react";
 import classes from './ProfileInfo.module.css';
-import preloaderGif from '../../../assets/loader.gif'
-import defaultPageImage from '../../../assets/users-vector-icon-png_260862.jpg'
+import preloaderGif from '../../../assets/Loading-Image-1.gif'
+import defaultPageImage from '../../../assets/unnamed.png'
 import ProfileProperties from "./ProfileProperties";
 import {ProfileStatus} from "./ProfileStatus";
 import {ProfilePropsType} from "../Profile";

@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import FindUsers from "./FindUsers";
-import preloaderGif from '../../assets/loader.gif'
+import preloaderGif from '../../assets/Loading-Image-1.gif'
 import {UsersType} from "../../Types/Types";
 
 

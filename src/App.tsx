@@ -13,7 +13,7 @@ import Login from "./parts/Login/Login";
 import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializeThunkCreator} from "./redux/app-reducer";
-import preloaderGif from './assets/loader.gif'
+import preloaderGif from './assets/Loading-Image-1.gif'
 import store, {AppStateType} from "./redux/redux.store";
 
 type PropsType = MapStateType & DispatchStateType

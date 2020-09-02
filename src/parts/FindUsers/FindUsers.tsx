@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./FindUsers.module.css";
-import pageImage from "../../assets/users-vector-icon-png_260862.jpg";
+import pageImage from '../../assets/unnamed.png'
 import {NavLink} from "react-router-dom";
 import {Paginator} from "../../common/Paginator/Paginator";
 import {UsersType} from "../../Types/Types";
