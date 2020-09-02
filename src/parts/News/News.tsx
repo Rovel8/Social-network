@@ -1,12 +1,14 @@
 import React from 'react';
 
 
-const News = () => {
-    return (
-        <div>
-            This is News component
-        </div>
-    );
+class News extends React.Component {
+    render() {
+        return (
+            <div data-test={'NewsComponent'}>
+                This is News component
+            </div>
+        );
+    }
 }
 
 export default News

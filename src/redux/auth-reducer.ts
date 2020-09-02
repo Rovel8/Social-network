@@ -61,7 +61,7 @@ type DataType = {
     id: number | null
     login: string | null
     email: string | null
-    isAuth: boolean
+    isAuth?: boolean
 }
 
 export const authUserThunkCreator = (): ThunkType => (dispatch) => {
