@@ -3,11 +3,11 @@ import {ThunkAction} from "redux-thunk";
 import {AppStateType, InferActionsTypes} from "./redux.store";
 
 
-const SET_USER_DATA = "SET-USER-DATA";
-const GET_CAPTCHA = 'GET-CAPTCHA';
-const SET_ERROR_MESSAGE = 'SET-ERROR-MESSAGE';
+export const SET_USER_DATA = "SET-USER-DATA";
+export const GET_CAPTCHA = 'GET-CAPTCHA';
+export const SET_ERROR_MESSAGE = 'SET-ERROR-MESSAGE';
 
-type InitialStateType = {
+export type InitialStateType = {
     id: number | null
     login: string | null
     email: string | null
