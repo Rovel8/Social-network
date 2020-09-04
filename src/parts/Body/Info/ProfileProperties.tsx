@@ -11,6 +11,7 @@ import {AppStateType} from "../../../redux/redux.store";
 type PropsType = {
     profile: FormDataOmitType
     submitUserDataThunkCreator: (formData: FormDataOmitType, userId: number) => void
+    isOwner: boolean
 }
 
 const ProfileProperties: React.FC<PropsType> = (props) => {
@@ -26,7 +27,7 @@ const ProfileProperties: React.FC<PropsType> = (props) => {
     return (
         <div>
             {editMode && <ProfilePropertiess submitUserDataThunkCreator={props.submitUserDataThunkCreator} deactivateEditMode={deactivateEditMode} {...props.profile}/>}
-            {!editMode && <UserInfo activateEditMode={activateEditMode} {...props.profile} />}
+            {!editMode && <UserInfo isOwner={props.isOwner} activateEditMode={activateEditMode} {...props.profile} />}
         </div>
     );
 }
@@ -125,11 +126,14 @@ const ProfilePropertiess: React.FC<FormDataType> = (props) => {
 type EditMode = {
     activateEditMode: () => void
 }
-const UserInfo: React.FC<FormDataOmitType & EditMode> = (props) => {
+type OwnerType = {
+    isOwner: boolean
+}
+const UserInfo: React.FC<FormDataOmitType & EditMode & OwnerType> = (props) => {
 
     return (
         <div>
-            <button onClick={props.activateEditMode}>Edit</button>
+            {props.isOwner && <button onClick={props.activateEditMode}>Edit</button>}
             <div><strong>Full name: </strong>{props.fullName}</div>
             <div><strong>About me: </strong>{props.aboutMe}</div>
             <div><strong>Looking for a job: </strong>{props.lookingForAJob ? 'Yes' : 'No'}</div>

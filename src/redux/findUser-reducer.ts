@@ -1,16 +1,16 @@
-import {followUserAPI, getUsersAPI, unfollowUserAPI} from "../API/API";
+import {usersAPI} from "../API/API";
 import {UsersType} from "../Types/Types";
 import {ThunkAction} from "redux-thunk";
 import {AppStateType, InferActionsTypes} from "./redux.store";
 
 
-const FOLLOW = "FOLLOW";
-const UNFOLLOW = 'UNFOLLOW';
-const SET_USERS = "SET-USERS";
-const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
-const SET_TOTAL_USERS = 'SET-TOTAL-USERS';
-const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
-const FOLLOWING_PROGRESS = 'FOLLOWING-PROGRESS'
+export const FOLLOW = "FOLLOW";
+export const UNFOLLOW = 'UNFOLLOW';
+export const SET_USERS = "SET-USERS";
+export const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
+export const SET_TOTAL_USERS = 'SET-TOTAL-USERS';
+export const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
+export const FOLLOWING_PROGRESS = 'FOLLOWING-PROGRESS'
 
 
 
@@ -99,7 +99,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number): Thu
         dispatch(findUserActions.setCurrentPage((currentPage)))
         dispatch(findUserActions.setIsFetching(true))
 
-        let response = await getUsersAPI(currentPage, pageSize)
+        let response = await usersAPI.getUsersAPI(currentPage, pageSize)
             dispatch(findUserActions.setIsFetching(false))
             dispatch(findUserActions.setUsers(response.items));
             dispatch(findUserActions.setTotalUsers(response.totalCount))
@@ -107,7 +107,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number): Thu
 
 export const unfollowUserThunkCreator = (userID: number): ThunkType => async (dispatch) => {
         dispatch(findUserActions.followingProcess(true, userID));
-        let response = await unfollowUserAPI(userID)
+        let response = await usersAPI.unfollowUserAPI(userID)
             if (response.resultCode === 0) {
                 dispatch(findUserActions.toUnfollow(userID))
             }
@@ -116,7 +116,7 @@ export const unfollowUserThunkCreator = (userID: number): ThunkType => async (di
 
 export const followUserThunkCreator = (userID: number): ThunkType => async (dispatch) => {
         dispatch(findUserActions.followingProcess(true, userID));
-        let response = await followUserAPI(userID)
+        let response = await usersAPI.followUserAPI(userID)
             if (response.resultCode === 0) {
                 dispatch(findUserActions.toFollow(userID))
             }

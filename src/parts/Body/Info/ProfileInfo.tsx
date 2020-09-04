@@ -24,7 +24,7 @@ const ProfileInfo: React.FC<ProfilePropsType> = (props) => {
       <div className={classes.Info}>
           <img src={props.profile.photos.large ? props.profile.photos.large : defaultPageImage} alt="ProfileImage"/>
           {props.isOwner && <input onChange={setProfileImage} type={'file'}/>}
-          <ProfileProperties submitUserDataThunkCreator={submitUserDataThunkCreator} profile={props.profile} />
+          <ProfileProperties submitUserDataThunkCreator={submitUserDataThunkCreator} isOwner={props.isOwner} profile={props.profile} />
           <ProfileStatus changeUserStatus={props.changeUserStatus} status={props.status}/>
       </div>
     );

@@ -1,20 +1,14 @@
-import {
-    changeUserStatusAPI,
-    getUserProfileAPI,
-    getUserStatusAPI,
-    setPhotoAPI,
-    setUserDataAPI
-} from "../API/API";
+import { usersAPI} from "../API/API";
 import {PostsType, ProfilePhotosType, ProfileType} from "../Types/Types";
 import {ThunkAction} from "redux-thunk";
 import {AppStateType, InferActionsTypes} from "./redux.store";
 import {FormDataOmitType} from "../parts/Body/Info/ProfileProperties";
 
-const ADD_POST = "ADD-POST";
-const SET_USER_PROFILE = 'SET-USER-PROFILE';
-const GET_USER_STATUS = 'GET-USER-STATUS';
-const SET_USER_IMAGE = 'SET-USER-IMAGE';
-const SET_USER_DATA = 'SET-USER-DATA'
+export const ADD_POST = "ADD-POST";
+export const SET_USER_PROFILE = 'SET-USER-PROFILE';
+export const GET_USER_STATUS = 'GET-USER-STATUS';
+export const SET_USER_IMAGE = 'SET-USER-IMAGE';
+export const SET_USER_DATA = 'SET-USER-DATA'
 
 
 let initialState = {
@@ -30,13 +24,11 @@ let initialState = {
 export type InitialStateType = typeof initialState
 
 export const profileReducer = (state = initialState, action: ActionsTypes): InitialStateType => {
-    let idCounter = 3
     if (action.type === ADD_POST) {
-        idCounter++
         return {
             ...state,
             posts: [...state.posts, {
-                id: idCounter,
+                id: 3,
                 message: action.newPostText,
                 name: 'Pasha',
                 age: '22',
@@ -84,33 +76,33 @@ export const profileActions = {
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsTypes>
 
 export const setOwnUserProfileThunkCreator = (userId: number | null): ThunkType => async (dispatch) => {
-    let response = await getUserProfileAPI(userId)
+    let response = await usersAPI.getUserProfileAPI(userId)
     dispatch(profileActions.setUserProfile(response));
 }
 
 export const getUserStatusThunkCreator = (userId: number | null): ThunkType  => async (dispatch) => {
-    let response = await getUserStatusAPI(userId)
+    let response = await usersAPI.getUserStatusAPI(userId)
     dispatch(profileActions.getUserStatus(response))
 }
 
 export const changeUserStatusThunkCreator = (status: string): ThunkType => async (dispatch) => {
-    let response = await changeUserStatusAPI(status)
+    let response = await usersAPI.changeUserStatusAPI(status)
     if (response.resultCode === 0) {
         dispatch(profileActions.getUserStatus(status))
     }
 }
 
 export const saveProfileImage = (image: any): ThunkType => async (dispatch) => {
-    let response = await setPhotoAPI(image)
+    let response = await usersAPI.setPhotoAPI(image)
     if (response.resultCode === 0) {
         dispatch(profileActions.setUserProfileImage(response.data.photos))
     }
 }
 
 export const submitUserDataThunkCreator = (data: FormDataOmitType, userId: number | null): ThunkType => async (dispatch) => {
-    let response = await setUserDataAPI(data)
+    let response = await usersAPI.setUserDataAPI(data)
     if (response.resultCode === 0) {
-        let result = await getUserProfileAPI(userId)
+        let result = await usersAPI.getUserProfileAPI(userId)
 
         dispatch(profileActions.setUserDataActionCreator(result))
     }

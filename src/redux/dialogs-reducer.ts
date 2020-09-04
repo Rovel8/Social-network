@@ -1,6 +1,6 @@
 import {InferActionsTypes} from "./redux.store";
 
-const ADD_MESSAGE = 'ADD-MESSAGE';
+export const ADD_MESSAGE = 'ADD-MESSAGE';
 
 export type MessagesType = {
     id: number
@@ -32,7 +32,7 @@ export const dialogsReducer = (state = initialState, action: ActionTypes): Initi
     if (action.type === ADD_MESSAGE) {
         return {
             ...state,
-            messages: [...state.messages, {id: 3, message: action.newMessageBody}]
+            messages: [...state.messages, {id: 4, message: action.newMessageBody}]
         }
     }
     return state

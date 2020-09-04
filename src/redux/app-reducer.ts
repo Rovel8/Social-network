@@ -2,7 +2,7 @@ import {authUserThunkCreator} from "./auth-reducer";
 import {ThunkAction} from "redux-thunk";
 import {AppStateType, InferActionsTypes} from "./redux.store";
 
-const SET_INITIALIZED = 'SET-INITIALIZED';
+export const SET_INITIALIZED = 'SET-INITIALIZED';
 
 type InitialStateType = typeof initialState
 

@@ -1,4 +1,4 @@
-import {authMe, getCaptchaAPI, loginUserAPI, logoutUserAPI} from "../API/API";
+import {authAPI, captchaAPI, loginAPI} from "../API/API";
 import {ThunkAction} from "redux-thunk";
 import {AppStateType, InferActionsTypes} from "./redux.store";
 
@@ -65,7 +65,7 @@ type DataType = {
 }
 
 export const authUserThunkCreator = (): ThunkType => (dispatch) => {
-    return authMe().then((response: any) => {
+    return authAPI.authMe().then((response: any) => {
         if (response.resultCode === 0) {
             let {id, login, email, isAuth} = response.data
             dispatch(authActions.setAuthUserData({id, login, email, isAuth}));
@@ -81,8 +81,8 @@ export type LoginType = {
 }
 
 export const loginUserThunkCreator = (email: string | null, password: string | null,
-                                      rememberMe: boolean, captcha: string | null | undefined): ThunkType => async (dispatch) => {
-    let response = await loginUserAPI({email, password, rememberMe, captcha})
+                                      rememberMe: boolean, captcha?: string | null | undefined): ThunkType => async (dispatch) => {
+    let response = await loginAPI.loginUserAPI({email, password, rememberMe, captcha})
         if (response.resultCode === 0) {
             await dispatch(authUserThunkCreator())
         } else {
@@ -90,13 +90,15 @@ export const loginUserThunkCreator = (email: string | null, password: string | n
                 dispatch(authActions.errorMessageActionCreator(response.messages[0]))
                 await dispatch(getCaptchaThunkCreator())
             }
-            dispatch(authActions.errorMessageActionCreator(response.messages[0]))
+            else {
+                dispatch(authActions.errorMessageActionCreator(response.messages[0]))
+            }
         }
 }
 
 export const logoutUserThunkCreator = (): ThunkType => async (dispatch) => {
 
-    let response = await logoutUserAPI()
+    let response = await loginAPI.logoutUserAPI()
         if (response.resultCode === 0) {
             dispatch(authActions.setAuthUserData({id: null, login: null, email: null, isAuth: false}))
             dispatch(authActions.getCaptchaActionCreator(null))
@@ -105,6 +107,6 @@ export const logoutUserThunkCreator = (): ThunkType => async (dispatch) => {
 }
 
 export const getCaptchaThunkCreator = (): ThunkType => async (dispatch) => {
-    let response = await getCaptchaAPI()
+    let response = await captchaAPI.getCaptchaAPI()
     dispatch(authActions.getCaptchaActionCreator(response.url))
 }
