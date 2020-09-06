@@ -6,7 +6,7 @@ import {withRouter, Route, BrowserRouter, Switch, Redirect} from 'react-router-d
 import Music from "./parts/Music/Music";
 import News from "./parts/News/News";
 import Settings from "./parts/Settings/Settings";
-import FindUsersContainer from "./parts/FindUsers/FindUsersContainer";
+import {FindUsersContainer} from "./parts/FindUsers/FindUsersContainert";
 import ProfileContainer from "./parts/Body/ProfileContainer";
 import HeaderContainer from "./parts/Header/HeaderContainer";
 import Login from "./parts/Login/Login";

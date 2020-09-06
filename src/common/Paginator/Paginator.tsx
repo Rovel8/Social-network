@@ -24,7 +24,7 @@ export const Paginator: React.FC<PropsType> = ({totalUsersCount, pageSize, setPa
     }
 
     return (
-        <div>
+        <React.Fragment>
             <div className={classes.pages}>
                 {portionNumber > 1 && <button onClick={() => {setPortionNumber(portionNumber - 1)}}>Prev</button>}
                 {pages.filter(p => p >= firstPortionPageNumber && p <= lastPortionPageNumber)
@@ -33,7 +33,7 @@ export const Paginator: React.FC<PropsType> = ({totalUsersCount, pageSize, setPa
                 }} className={currentPage === p ? classes.selectedPage : classes.AllPages}>{p}</span>)}
                 {portionCount > portionNumber && <button onClick={() => setPortionNumber(portionNumber + 1)}>Next</button>}
             </div>
-        </div>
+        </React.Fragment>
     );
 }
 

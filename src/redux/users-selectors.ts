@@ -6,10 +6,6 @@ export const getUsersSelector = (state: AppStateType) => {
     return state.findUsers.users
 }
 
-export const getUsersMiddleSelector = (state: AppStateType) => {
-    return getUsersSelector(state).filter(u => true)
-}
-
 export const getUsersSuperSelector = createSelector(getUsersSelector, (users) => {
     return users.filter(u => true);
 })
@@ -32,4 +28,12 @@ export const getIsFetchingSelector = (state: AppStateType) => {
 
 export const getFollowingInProcessSelector = (state: AppStateType) => {
     return state.findUsers.followingInProcess
+}
+
+export const getTermSelector = (state: AppStateType) => {
+    return state.findUsers.filter.term
+}
+
+export const getFriendSelector = (state: AppStateType) => {
+    return state.findUsers.friend
 }

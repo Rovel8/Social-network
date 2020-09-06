@@ -42,8 +42,8 @@ type GetUsersType = {
 }
 
 export const usersAPI = {
-    getUsersAPI: (currentPage: number, pageSize: number) => {
-        return instance.get<GetUsersType>(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data)
+    getUsersAPI: (currentPage: number, pageSize: number, term: string, friend: boolean | null) => {
+        return instance.get<GetUsersType>(`users?page=${currentPage}&count=${pageSize}&term=${term}` + (friend !== null ? `&friend=${friend}` : '')).then(response => response.data)
     },
     getUserProfileAPI: (userId: number | null) => {
         return instance.get<ProfileType>(`profile/${userId}`).then(response => response.data);

@@ -14,7 +14,6 @@ const Dialogs: React.FC<PropsType> = (props) => {
 
     let dialogsElement = props.messagesPage.dialogs.map((d: DialogsType) => (<DialogItem name={d.name} id={d.id}/>))
 
-    debugger
     let messagesElement = props.messagesPage.messages.map((m: MessagesType) => (<Message id={m.id} message={m.message}/>))
 
     return (
@@ -48,14 +47,14 @@ const FieldForMessageInput: React.FC<formType> = (props) => {
     }
 
     return (
-            <div>
+            <React.Fragment>
                 <Formik initialValues={initialValues} onSubmit={onSubmit}>
                     <Form>
                         <Field as={'textarea'} placeholder={'Type message'} name={'newMessageBody'}/>
                         <button>Send message</button>
                     </Form>
                 </Formik>
-            </div>
+            </React.Fragment>
 
     );
 }
