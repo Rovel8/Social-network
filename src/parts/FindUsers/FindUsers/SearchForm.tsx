@@ -2,6 +2,8 @@ import React from "react";
 import {Formik, Field, Form, FormikHelpers} from "formik";
 import {getUsersThunkCreator} from "../../../redux/findUser-reducer";
 import {useDispatch} from "react-redux";
+import {useTypedSelector} from "../FindUsers";
+import {getFriendSelector, getTermSelector} from "../../../redux/users-selectors";
 
 type PropsType = {
     currentPage: number
@@ -13,9 +15,14 @@ const SearchForm: React.FC<PropsType> = (props) => {
 
     const dispatch = useDispatch()
 
+    const term = useTypedSelector(getTermSelector)
+    const isFriend = useTypedSelector(getFriendSelector)
+
+    debugger
+
     const initialValues = {
-        term: '',
-        friend: ''
+        term: term,
+        friend: String(isFriend)
     }
 
     type initialValuesType = typeof initialValues
@@ -27,9 +34,9 @@ const SearchForm: React.FC<PropsType> = (props) => {
 
     return (
         <div>
-            <Formik initialValues={initialValues} onSubmit={onSubmit}>
+            <Formik enableReinitialize={true} initialValues={initialValues} onSubmit={onSubmit}>
+
                 {formik => {
-                    console.log(formik)
                     return (
                         <Form>
                             <Field name={'term'} id={'term'} placeholder={'search'} />

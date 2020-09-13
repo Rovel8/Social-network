@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import classes from "./FindUsers.module.css";
 import pageImage from '../../assets/unnamed.png'
-import {NavLink} from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
 import {Paginator} from "../../common/Paginator/Paginator";
 import {UsersType} from "../../Types/Types";
 import SearchForm from "./FindUsers/SearchForm";
@@ -14,6 +14,7 @@ import {
 } from "../../redux/users-selectors";
 import {AppStateType} from "../../redux/redux.store";
 import {getUsersThunkCreator, unfollowUserThunkCreator, followUserThunkCreator} from "../../redux/findUser-reducer";
+import * as queryString from "querystring";
 
 export const useTypedSelector: TypedUseSelectorHook<AppStateType> = useSelector
 const FindUsers: React.FC<{}> = () => {
@@ -40,9 +41,41 @@ const FindUsers: React.FC<{}> = () => {
         dispatch(unfollowUserThunkCreator(userId))
     }
 
+    const history = useHistory()
+
+    type QueryStringType = {term?: string, page?: string, friend?: string}
+
     useEffect(() => {
-        dispatch(getUsersThunkCreator(currentPage, pageSize, term, friend))
+        const {search} = history.location
+        const parse = queryString.parse(search.substring(1)) as QueryStringType
+
+        debugger
+
+        let actualPageNumber = currentPage
+        let filter = term
+        let isFriend = friend
+        if(parse.page) actualPageNumber = Number(parse.page)
+        if(parse.term) filter = parse.term
+        if(parse.friend) isFriend = parse.friend === 'null' ? null : parse.friend === 'true' ? true : false
+
+
+        dispatch(getUsersThunkCreator(actualPageNumber, pageSize, filter, isFriend))
     }, [])
+
+    useEffect(() => {
+
+        const query : QueryStringType = {}
+
+        if(term) query.term = term
+        if(friend !== null) query.friend = String(friend)
+        if(currentPage !== 1) query.page = String(currentPage)
+
+
+        history.push({
+            pathname: '/FindUsers',
+            search: queryString.stringify(query)
+        })
+    }, [term, currentPage, friend])
 
     useEffect(() => {
         return () => {dispatch(getUsersThunkCreator(currentPage, pageSize, term,  null))}

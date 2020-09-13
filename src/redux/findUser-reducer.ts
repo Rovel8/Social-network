@@ -111,10 +111,9 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number, term
     dispatch(findUserActions.setCurrentPage((currentPage)))
     dispatch(findUserActions.setIsFetching(true))
     dispatch(findUserActions.setTerm(term))
-
+    dispatch(findUserActions.setFriend(friend))
 
     let response = await usersAPI.getUsersAPI(currentPage, pageSize, term, friend)
-    dispatch(findUserActions.setFriend(friend))
     dispatch(findUserActions.setIsFetching(false))
     dispatch(findUserActions.setUsers(response.items));
     dispatch(findUserActions.setTotalUsers(response.totalCount))

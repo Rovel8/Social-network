@@ -70,7 +70,7 @@ const AppContainer =  compose<ComponentType>(withRouter,
 
 const WholeApp = () => {
     return (
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <BrowserRouter>
             <Provider store={store}>
                 <AppContainer />
             </Provider>
